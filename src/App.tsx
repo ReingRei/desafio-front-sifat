@@ -1,34 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
+import ProductListPage from './pages/ProductListPage';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        toastOptions={{
+          duration: 5000,
+          style: { background: '#363636', color: '#fff' },
+        }}
+      />
+
+      <div className="container mx-auto p-4">
+        <Routes>
+          <Route path="/" element={<ProductListPage />} />
+
+          <Route path="/products/new" element={<div>Formulário de Criação (Placeholder)</div>} />
+
+          <Route path="/products/edit/:id" element={<div>Formulário de Edição (Placeholder)</div>} />
+
+          <Route path="*" element={<div>Página não encontrada</div>} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </Router>
   )
 }
 
