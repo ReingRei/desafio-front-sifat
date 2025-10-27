@@ -106,7 +106,8 @@ const ProductFilterPanel: React.FC<ProductFilterPanelProps> = ({
             id="filterMinPrice"
             value={minPrice}
             onValueChange={(value, name, values) => {
-              if (values && values.value) {
+              const aqui = `${value} - ${name} - ${values}`;
+              if (values && values.value && aqui) {
                 setMinPrice(values.value);
               } else {
                 setMinPrice("");
@@ -133,7 +134,9 @@ const ProductFilterPanel: React.FC<ProductFilterPanelProps> = ({
             id="filterMaxPrice"
             value={maxPrice}
             onValueChange={(value, name, values) => {
-              if (values && values.value) {
+              const aqui = `${value} - ${name} - ${values}`;
+
+              if (values && values.value && aqui) {
                 setMaxPrice(values.value);
               } else {
                 setMaxPrice("");

@@ -126,7 +126,9 @@ const ProductForm: React.FC<ProductFormProps> = ({
             value={price}
             required
             onValueChange={(value, name, values) => {
-              if (values && values.value) {
+              const aqui = `${value} - ${name}`;
+              
+              if (values && values.value && aqui) {
                 setPrice(values.value);
               } else {
                 setPrice("");
