@@ -4,10 +4,12 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 
 import TopActionBar from "./TopActionBar";
 
-const MockProductFormModal = vi.fn(() => null);
-vi.mock("./modals/ProductFormModal", () => ({
-  default: MockProductFormModal,
-}));
+vi.mock("./modals/ProductFormModal", () => {
+  return {
+    default: vi.fn(() => null),
+  };
+});
+import ProductFormModal from "./modals/ProductFormModal";
 
 const mockOnSearch = vi.fn();
 const mockOnToggleFilters = vi.fn();
@@ -134,18 +136,17 @@ describe("TopActionBar", () => {
     const user = userEvent.setup();
     render(<TopActionBar {...defaultProps} />);
 
-    expect(MockProductFormModal).toHaveBeenLastCalledWith(
-      expect.objectContaining({ isOpen: false }),
-      {}
-    );
+    let calls = vi.mocked(ProductFormModal).mock.calls;
+
+    expect(calls[0][0]).toEqual(expect.objectContaining({ isOpen: false }));
 
     const addButton = screen.getByText("Adicionar");
     await user.click(addButton);
 
-    expect(MockProductFormModal).toHaveBeenLastCalledWith(
-      expect.objectContaining({ isOpen: true, productToEdit: null }),
-      {}
+    calls = vi.mocked(ProductFormModal).mock.calls;
+
+    expect(calls[calls.length - 1][0]).toEqual(
+      expect.objectContaining({ isOpen: true, productToEdit: null })
     );
   });
-
 });

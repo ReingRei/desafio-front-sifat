@@ -100,5 +100,7 @@ Para conectar ao backend (que deve estar rodando via Docker):
 
 O projeto inclui testes unitários automatizados usando **Vitest** e **React Testing Library**.
 
+Foram incluídos testes de somente alguns components.
+
 * **Testes de Componentes/Páginas:** Focam em testar o comportamento da UI como um usuário final (renderização condicional, interações de clique e digitação).
 * **Mocks:** Os serviços de API (`ProductService`) são "mockados" para simular cenários de sucesso, erro e carregamento, validando a
