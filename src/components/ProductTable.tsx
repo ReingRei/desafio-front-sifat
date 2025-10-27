@@ -41,7 +41,6 @@ const ProductTable: React.FC<ProductTableProps> = ({
       toast.success(`Produto excluído com sucesso!`);
     } catch (error) {
       console.error("Erro ao excluir produto:", error);
-      toast.error(`Erro ao excluir produto.`);
     }
   };
 

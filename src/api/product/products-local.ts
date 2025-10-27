@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import type {
   Category,
   PageResponse,
@@ -5,7 +6,7 @@ import type {
   ProductFilter,
   ProductRequest,
 } from "../../types/Product";
-import type { IProductService } from "./IProductService";
+import type { IProductService } from "./Iporduct-service";
 
 const LOCAL_CATEGORIES: Category[] = [
   { id: 1, name: "Eletrônicos" },
@@ -75,6 +76,7 @@ export const ProductLocalStorageService: IProductService = {
     const products = getLocalProducts();
     const product = products.find((p) => p.id === id);
     if (!product) {
+      toast.error("Produto não encontrado no LocalStorage");
       throw new Error("Produto não encontrado no LocalStorage");
     }
     return product;
@@ -103,6 +105,7 @@ export const ProductLocalStorageService: IProductService = {
     const index = products.findIndex((p) => p.id === id);
 
     if (index === -1) {
+      toast.error("Produto não encontrado para atualização");
       throw new Error("Produto não encontrado para atualização");
     }
 
@@ -124,6 +127,7 @@ export const ProductLocalStorageService: IProductService = {
     const filteredProducts = products.filter((p) => p.id !== id);
 
     if (products.length === filteredProducts.length) {
+      toast.error("Produto não encontrado para exclusão");
       throw new Error("Produto não encontrado para exclusão");
     }
 

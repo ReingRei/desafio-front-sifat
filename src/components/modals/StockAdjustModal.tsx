@@ -36,7 +36,6 @@ const StockAdjustModal: React.FC<StockAdjustModalProps> = ({
           setInventory(await InventoryService.getInventory(product?.id));
         } catch (e) {
           console.error(e);
-          toast.error("Erro ao carregar o estoque do produto.");
         } finally {
           setLoadingInventory(false);
         }
@@ -59,7 +58,6 @@ const StockAdjustModal: React.FC<StockAdjustModalProps> = ({
       toast.success("Estoque ajustado com sucesso.");
     } catch (error) {
       console.error("Erro ao ajustar estoque:", error);
-      toast.error("Erro ao ajustar estoque.");
     } finally {
       setIsSubmitting(false);
     }

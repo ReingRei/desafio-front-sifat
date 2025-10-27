@@ -1,7 +1,7 @@
 // src/api/products-service.ts
 
 import { USE_LOCAL_STORAGE } from "../../config/data-source";
-import { type IProductService } from "./IProductService";
+import { type IProductService } from "./Iporduct-service";
 import { ProductApiService } from "./products-api";
 import { ProductLocalStorageService } from "./products-local";
 

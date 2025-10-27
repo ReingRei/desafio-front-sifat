@@ -5,7 +5,6 @@ import PaginationControls from "../components/PaginationControls";
 import ProductFilterPanel from "../components/ProductFilterPanel";
 import TopActionBar from "../components/TopActionBar";
 import ProductTable from "../components/ProductTable";
-import toast from "react-hot-toast";
 
 const ProductListPage: React.FC = () => {
   const [productsPage, setProductsPage] =
@@ -26,7 +25,6 @@ const ProductListPage: React.FC = () => {
         setError(
           err instanceof Error ? err.message : "Erro ao buscar produtos."
         );
-      toast.error(`Erro ao buscar produtos.`);
         console.error(err);
       } finally {
         setLoading(false);
@@ -82,6 +80,11 @@ const ProductListPage: React.FC = () => {
     setFilters((prev) => ({ ...prev }));
   };
 
+  const handleRetry = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    handleDataChanged();
+  };
+
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Lista de Produtos</h1>
@@ -104,8 +107,19 @@ const ProductListPage: React.FC = () => {
       )}
 
       {loading && <p>Carregando...</p>}
-      {error && <p className="text-red-500">Erro: {error}</p>}
-      {productsPage && productsPage.content.length > 0 && !loading && (
+      {error && (
+        <div className="text-center p-10 bg-red-50 border border-red-200 rounded-md max-w-md mx-auto my-10">
+          <p className="text-lg font-medium text-red-700 mb-4">Ocorreu um erro</p>
+          <a
+            href="#"
+            onClick={handleRetry}
+            className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 font-semibold"
+          >
+            Tentar novamente
+          </a>
+        </div>
+      )}
+      {productsPage && productsPage.content.length > 0 && !loading && !error && (
         <ProductTable
           products={productsPage.content}
           onDataChanged={handleDataChanged}

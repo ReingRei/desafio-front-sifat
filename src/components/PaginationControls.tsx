@@ -1,7 +1,6 @@
 import React from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 
-// 1. Definir as Props
 interface PaginationControlsProps {
   currentPage: number;
   totalPages: number;

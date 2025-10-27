@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import type { Product, ProductRequest, Category } from "../types/Product";
 import { ProductService } from "../api/product/products-service";
-import toast from "react-hot-toast";
 import CurrencyInput from "react-currency-input-field";
 
 interface ProductFormProps {
@@ -83,8 +82,6 @@ const ProductForm: React.FC<ProductFormProps> = ({
       await onSubmit(formData);
     } catch (error) {
       console.error("Erro ao salvar produto:", error);
-      toast.error("Erro ao salvar o produto.");
-      setErrors({ submit: "Erro ao salvar o produto. Tente novamente." });
     }
   };
 

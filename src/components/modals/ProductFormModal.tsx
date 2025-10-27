@@ -34,9 +34,6 @@ const ProductFormModal: React.FC<ProductFormModalProps> = ({
       onSaveSuccess();
     } catch (error) {
       console.error("Erro ao salvar produto:", error);
-      const message =
-        error instanceof Error ? error.message : "Erro desconhecido.";
-      toast.error(`Erro ao salvar: ${message}`);
     } finally {
       setIsSubmitting(false);
     }

@@ -1,7 +1,7 @@
 // src/api/products-service.ts
 
 import { USE_LOCAL_STORAGE } from "../../config/data-source";
-import type { IInventoryService } from "./IInventoryService";
+import type { IInventoryService } from "./Iinventory-service";
 import { InventoryApiService } from "./inventory-api";
 import { InventoryLocalStorageService } from "./inventory-local";
 

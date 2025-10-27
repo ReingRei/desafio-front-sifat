@@ -1,5 +1,6 @@
+import toast from "react-hot-toast";
 import type { Inventory, InventoryAdjustRequest } from "../../types/Inventory";
-import type { IInventoryService } from "./IInventoryService";
+import type { IInventoryService } from "./Iinventory-service";
 
 const STORAGE_KEY = "local_inventories";
 
@@ -32,6 +33,7 @@ export const InventoryLocalStorageService: IInventoryService = {
     const index = inventories.findIndex((i) => i.productId === productId);
 
     if (index === -1) {
+      toast.error("Inevntory não encontrado no LocalStorage");
       throw new Error("Inevntory não encontrado no LocalStorage");
     }
 
